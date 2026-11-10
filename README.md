@@ -1,6 +1,6 @@
 # 3ATIVE SiFi 01
 
-[![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz)
+[![Home Assistant Marketplace](https://img.shields.io/badge/Home%20Assistant-Marketplace-41BDF5.svg?logo=homeassistant&logoColor=white)](https://www.home-assistant.io)
 [![Validate](https://github.com/3ative/3ative-sifi-theme/actions/workflows/validate.yaml/badge.svg)](https://github.com/3ative/3ative-sifi-theme/actions/workflows/validate.yaml)
 
 A sci-fi control-room theme for Home Assistant: deep navy panels, a signature
@@ -20,14 +20,17 @@ so this theme has no light mode.
 
 ## Installation
 
-### HACS
+### Home Assistant Marketplace
 
-1. Open HACS and search for **3ATIVE SiFi 01**.
-   (If it isn't listed yet: HACS > three-dot menu > **Custom repositories**,
-   add `https://github.com/3ative/3ative-sifi-theme` with type **Theme**.)
+1. Go to **Settings** > **Marketplace** and search for **3ATIVE SiFi 01**.
+   (Not listed yet? Select **Add from link** and enter
+   `https://github.com/3ative/3ative-sifi-theme`.)
 2. Install it.
 3. Restart Home Assistant, or call the `frontend.reload_themes` action.
 4. Go to your profile and pick **3ATIVE SiFi 01** as your theme.
+
+> On Home Assistant older than 2026.11, use HACS instead: HACS > three-dot
+> menu > **Custom repositories**, add the URL above with type **Theme**.
 
 ### Manual
 
