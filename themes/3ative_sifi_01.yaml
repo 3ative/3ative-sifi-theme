@@ -1,0 +1,281 @@
+"3ATIVE SiFi 01":
+  # Sci-fi control room look (backgrounds and glows from the reference image)
+  # with the accent blues from 3ative_blue_glass1.
+  # Dark-only, so HA's dark defaults fill any gaps.
+  #
+  # How colours are organised:
+  #   1. Palette - every solid colour, defined once
+  #   2. Tints   - see-through versions of palette colours, built with color-mix()
+  #   Everything below only references these, so changing one palette entry updates the whole theme.
+  #   Note: state and graph colours stay solid, as HA reads them in JavaScript and can't parse color-mix().
+  modes:
+    dark:
+      ############## 1. Palette ##############
+      ## Backgrounds (darkest to lightest)
+      sifi_void: rgb(4, 7, 23) # Page background, table rows
+      sifi_deep: rgb(6, 16, 32) # Cards, input fills, disabled fills, alternate table rows
+      sifi_navy: rgb(9, 17, 37) # Top banner, sidebar, switch track off
+      sifi_surface: rgb(7, 20, 40) # Dialogs, popovers, bottom sheets
+      sifi_raised: rgb(12, 34, 60) # Pop-up box headers
+      sifi_panel: rgb(15, 45, 77) # Form fields, tooltips, raised surfaces
+      ## Blues (from 3ative_blue_glass1)
+      sifi_blue_deep: rgb(24, 72, 120) # Off states, light primary
+      sifi_blue_dark: rgb(35, 103, 167) # glass1 3ative_dark - icons, tracks, filled buttons, halos
+      sifi_blue_mid: rgb(55, 128, 198) # Filled button hover
+      sifi_blue_bright: rgb(142, 198, 250) # glass1 3ative_bright - main accent, on states, glows
+      ## Text
+      sifi_white: rgb(240, 250, 253) # Menu, tooltip and highlight text
+      sifi_ice: rgb(197, 226, 233) # Main text
+      sifi_steel: rgb(115, 165, 215) # Secondary text
+      sifi_grey: rgb(110, 130, 145) # Disabled text
+      ## Accents
+      sifi_ember: rgb(232, 120, 60) # Warm monitor accent - updates, accent button, graph line 2
+      sifi_heat: rgb(255, 25, 0) # Thermostat heating (glass1: 255, 0, 0)
+      sifi_cool: rgb(0, 60, 255) # Thermostat cooling (glass1: 0, 0, 255)
+      sifi_sky: rgb(70, 170, 255)
+      sifi_mint: rgb(90, 240, 160)
+      sifi_violet: rgb(170, 120, 255)
+      sifi_amber: rgb(255, 205, 70)
+      sifi_pink: rgb(255, 90, 170)
+      sifi_cyan: rgb(0, 225, 255)
+      sifi_shadow: rgb(0, 0, 0)
+
+      ############## 2. Tints ##############
+      ## Light blue, from faint to bold
+      sifi_tint_faint: color-mix(in srgb, var(--sifi_blue_bright) 12%, transparent) # Inner haze, disabled lines
+      sifi_tint_light: color-mix(in srgb, var(--sifi_blue_bright) 18%, transparent) # Dividers, edge glow
+      sifi_tint_soft: color-mix(in srgb, var(--sifi_blue_bright) 30%, transparent) # Soft glows, input lines
+      sifi_tint_mid: color-mix(in srgb, var(--sifi_blue_bright) 35%, transparent) # Card border, dialog rim
+      sifi_tint_hover: color-mix(in srgb, var(--sifi_blue_bright) 40%, transparent) # Hover highlights
+      sifi_tint_strong: color-mix(in srgb, var(--sifi_blue_bright) 55%, transparent) # Switch thumb glow
+      sifi_tint_bold: color-mix(in srgb, var(--sifi_blue_bright) 70%, transparent) # Input hover lines
+      ## Deep blue halo and drop shadows
+      sifi_halo: color-mix(in srgb, var(--sifi_blue_dark) 65%, transparent) # Panel / dialog / menu halos
+      sifi_drop: color-mix(in srgb, var(--sifi_shadow) 80%, transparent) # Card drop shadow
+      sifi_drop_soft: color-mix(in srgb, var(--sifi_shadow) 55%, transparent) # Pop-up drop shadow
+      ## Glass
+      sifi_glass: color-mix(in srgb, var(--sifi_deep) 15%, transparent) # Card background - 85% see-through
+
+      # Aliases used by Overview dashboard button-cards (shared with the glass themes)
+      3ative_main_on_colour: var(--sifi_blue_bright)
+      3ative_main_off_colour: var(--sifi_blue_dark)
+
+      ############## Glow Effects ##############
+      # Theme variables can only glow where HA reads a shadow variable.
+      # Slider thumbs and tile-card sliders have fixed shadows, so they need card-mod.
+      # CSS box-shadow format: [inset]  offset-x  offset-y  blur  spread  color
+
+      # Cards, tile cards and badges (the panel glow):
+      #   Layer 1: inset light-blue haze inside the panel
+      #   Layer 2: faint light-blue glow hugging the border
+      #   Layer 3: deep-blue halo
+      #   Layer 4: drop shadow for depth
+      ha-card-box-shadow: >-
+        inset 0 0 12px 0px var(--sifi_tint_faint),
+        0 0 4px 0px var(--sifi_tint_light),
+        0 0 14px 1px var(--sifi_halo),
+        2px 3px 6px 0px var(--sifi_drop)
+      ha-switch-thumb-box-shadow: 0 0 15px 2.5px var(--sifi_tint_strong) # Switch thumbs (as in glass1)
+      ha-button-box-shadow: 0 0 8px 0 var(--sifi_tint_soft) # Buttons
+      ha-tooltip-box-shadow: 0 0 10px 1px var(--sifi_tint_soft) # Tooltips
+      # Dialogs: light-blue rim + deep-blue halo + depth
+      dialog-box-shadow: >-
+        0 0 0 1px var(--sifi_tint_mid),
+        0 0 30px 4px var(--sifi_halo),
+        0 16px 32px -6px var(--sifi_drop)
+      # HA shared shadow sizes: S = chips, scrolled toolbars; M = pickers, menus; L = popovers, toasts, sheets
+      ha-box-shadow-s: 0 0 6px 0 var(--sifi_tint_soft), 0 1px 3px 0 var(--sifi_drop_soft)
+      ha-box-shadow-m: 0 0 12px 1px var(--sifi_halo), 0 8px 16px -2px var(--sifi_drop_soft)
+      ha-box-shadow-l: 0 0 20px 2px var(--sifi_halo), 0 16px 32px -6px var(--sifi_drop_soft)
+      wa-shadow-l: var(--ha-box-shadow-l) # HA's dark mode sets its own, so point it back
+      bar-box-shadow: 0 2px 14px 0 var(--sifi_halo) # Dashboard header underglow when scrolled
+
+      ############## Main Interface ##############
+      primary-color: var(--sifi_blue_bright) # Main Accent Colour
+      accent-color: var(--sifi_ember) # Circle Plus Button etc
+      light-primary-color: var(--sifi_blue_deep)
+      dark-primary-color: var(--sifi_blue_dark) # Map / ZHA network graph accents
+      success-color: var(--sifi_mint)
+      header-height: 27px
+      scrollbar-thumb-color: var(--sifi_blue_dark)
+
+      ## Pop-up Surfaces ##
+      ha-color-surface-default: var(--sifi_surface) # Dialogs, popovers, bottom sheets
+      ha-dialog-surface-background: var(--sifi_surface) # Dialog panel itself - without this it falls back to card-background-color (the 85%-transparent glass), which is what washed out the more-info light slider
+      ha-dialog-scrim-backdrop-filter: blur(8px) # Blurs the dashboard behind a pop-up. HA 2026.1 added its own default for this (brightness(68%)) which silently overrides the legacy dialog-backdrop-filter below, so this is the one that actually has to be set
+      dialog-backdrop-filter: blur(8px) # Legacy fallback, kept for older HA versions - kept in sync with the one above
+      ha-tooltip-background-color: var(--sifi_panel)
+      ha-tooltip-text-color: var(--sifi_white)
+
+      ############## Backgrounds ##############
+      primary-background-color: var(--sifi_void) # Main Pages Background
+      secondary-background-color: var(--sifi_raised) # Pop up Box Header
+      app-header-background-color: var(--sifi_navy) # Top Banner
+      sidebar-background-color: var(--sifi_navy)
+      divider-color: var(--sifi_tint_light)
+
+      ############## Background Images ##############
+      # Same names as the glass themes so dashboard views keep working
+      background-image-main: url(/local/3ative_bg.jpg) no-repeat top left / 100% 100%
+      background-image-main2: url(/local/3ative_bg_code.jpg) no-repeat top left / 100% 100%
+      background-image-main3: url(/local/3ative_bg_code.jpg) no-repeat top left / 100% 100%
+
+      ############## Cards ##############
+      mdc-theme-surface: var(--sifi_panel)
+      # card-background-color is the GENERIC surface var - dialogs, dropdowns, inputs, badges and
+      # sliders all fall back to it, so it has to stay solid or every one of those goes see-through
+      # along with the dashboard cards. ha-card reads the more specific ha-card-background FIRST,
+      # so that's where the glass effect belongs instead - only ha-card (and ha-badge, which uses
+      # the same var) picks it up; everything else stays legible.
+      card-background-color: var(--sifi_panel) # Generic surface fallback (dropdowns, dialogs, inputs, badges) - solid
+      ha-card-background: var(--sifi_glass) # Card panel only - mostly see-through, background image shows through
+      ha-card-backdrop-filter: blur(20px) saturate(100%) # Frosted glass so text stays readable over the background image
+      clear-background-color: var(--sifi_blue_dark)
+      ha-card-border-radius: 3px
+      ha-card-border-width: 1.5px
+      ha-card-border-color: var(--sifi_tint_mid) # Light-blue bezel edge
+      ha-view-sections-row-gap: 10px
+      ha-view-sections-column-gap: 5px
+      ha-space-3: 10px
+      ha-space-4: 10px
+
+      ############## Text ##############
+      primary-text-color: var(--sifi_ice)
+      secondary-text-color: var(--sifi_steel)
+      disabled-text-color: var(--sifi_grey)
+
+      ############## Sidebar Menu & Top Header ##############
+      # Same arrangement as glass1: dark blue icons, light blue for selected / header
+      sidebar-icon-color: var(--sifi_blue_dark) # Unselected Icons
+      sidebar-text-color: var(--sifi_blue_bright) # Labels when the menu is expanded
+      sidebar-selected-icon-color: var(--sifi_blue_bright) # Selected Icon, Text & Highlight
+      app-header-text-color: var(--sifi_blue_bright) # Header icons and tab labels
+      app-header-selection-bar-color: var(--sifi_blue_bright) # Underline on the selected tab
+
+      ############## Mouse-over / Press Effect ##############
+      # HA's shared hover overlay (default: secondary text colour at 8%).
+      # Drives the sidebar items and header icon buttons, plus list rows, tiles and icon buttons elsewhere.
+      # The top view tabs have no hover overlay in HA, so they can't be given one from a theme.
+      ha-ripple-hover-color: var(--sifi_blue_bright)
+      ha-ripple-hover-opacity: 0.22
+      ha-ripple-pressed-color: var(--sifi_blue_bright)
+      ha-ripple-pressed-opacity: 0.32
+
+      ############## Label Badges (picture-elements state-badge only) ##############
+      label-badge-background-color: var(--sifi_void)
+      label-badge-text-color: var(--sifi_blue_bright)
+      label-badge-red: var(--sifi_blue_bright) # Border colour
+      label-badge-blue: var(--sifi_blue_dark)
+      label-badge-green: var(--sifi_mint)
+      label-badge-yellow: var(--sifi_amber)
+      label-badge-grey: var(--sifi_steel)
+
+      ############## Inputs (older dialogs, data table search) ##############
+      input-label-ink-color: var(--sifi_blue_bright)
+      input-dropdown-icon-color: var(--sifi_steel)
+      input-ink-color: var(--sifi_ice)
+      input-fill-color: var(--sifi_deep)
+      input-idle-line-color: var(--sifi_tint_soft)
+      input-hover-line-color: var(--sifi_tint_bold)
+      input-disabled-line-color: var(--sifi_tint_faint)
+      input-outlined-idle-border-color: var(--sifi_tint_soft)
+      input-outlined-hover-border-color: var(--sifi_tint_bold)
+      input-outlined-disabled-border-color: var(--sifi_tint_faint)
+      input-disabled-fill-color: var(--sifi_deep)
+      input-disabled-ink-color: var(--disabled-text-color)
+
+      ############## Dropdown Menus / Form Fields ##############
+      ha-color-form-background: var(--sifi_panel)
+      ha-color-form-background-hover: var(--sifi_blue_dark)
+      ha-color-form-background-disabled: var(--sifi_deep) # Unavailable selects/pickers
+      ha-color-fill-primary-quiet-resting: var(--sifi_blue_dark) # Selected item
+      ha-color-fill-neutral-quiet-resting: var(--sifi_panel)
+
+      ## Buttons ##
+      # One text colour serves both text-only buttons (no fill) and filled buttons,
+      # so filled buttons get a dark blue fill and all brand button text is light blue.
+      ha-color-fill-primary-normal-resting: var(--sifi_blue_dark) # Filled button
+      ha-color-fill-primary-normal-hover: var(--sifi_blue_mid) # Filled button hover
+      wa-color-brand-on-normal: var(--sifi_blue_bright) # Brand button text (Edit profile, Save, etc)
+
+      ## Hover highlights ##
+      wa-color-neutral-fill-normal: var(--sifi_tint_hover) # Dropdown item / select option hover
+      wa-color-neutral-on-normal: var(--sifi_white)
+      ha-color-fill-neutral-quiet-hover: var(--sifi_tint_hover) # Entity picker / list row hover
+      ha-color-fill-neutral-normal-hover: var(--sifi_tint_hover)
+      wa-color-text-normal: var(--sifi_white) # Menu, popover and option text
+
+      ############## Sliders/Switches ##############
+      disabled-color: var(--sifi_blue_dark) # Slider Track
+      ha-slider-track-size: 2px
+      ha-slider-thumb-color: var(--sifi_blue_bright)
+
+      ha-switch-background-color: var(--sifi_navy) # Track Off
+      ha-switch-background-color-hover: var(--sifi_panel)
+      ha-switch-border-color: var(--sifi_blue_dark)
+      ha-switch-checked-background-color: var(--sifi_blue_dark) # Track On
+      ha-switch-checked-background-color-hover: var(--sifi_blue_dark)
+      ha-switch-checked-border-color: var(--sifi_blue_dark)
+      ha-switch-checked-border-color-hover: var(--sifi_blue_bright)
+
+      ha-switch-thumb-background-color: var(--sifi_blue_dark) # Thumb Off
+      ha-switch-thumb-border-color: var(--sifi_void)
+      ha-switch-thumb-background-color-hover: var(--sifi_blue_bright)
+      ha-switch-thumb-border-color-hover: var(--sifi_blue_bright)
+      ha-switch-checked-thumb-background-color: var(--sifi_blue_bright) # Thumb On
+      ha-switch-checked-thumb-border-color: var(--sifi_white)
+      ha-switch-checked-thumb-background-color-hover: var(--sifi_white)
+      ha-switch-checked-thumb-border-color-hover: var(--sifi_blue_bright)
+
+      ############## Icons / States ##############
+      # HA resolves: domain-deviceclass-state > domain-state > domain-active > state-active
+      state-active-color: var(--sifi_blue_bright)
+      state-inactive-color: var(--sifi_blue_deep)
+      state-icon-unavailable-color: var(--disabled-text-color)
+
+      # Domains where HA ships its own colour, so the generic one above is not enough
+      state-switch-active-color: var(--sifi_blue_bright)
+      state-switch-inactive-color: var(--sifi_blue_dark)
+      state-light-active-color: var(--sifi_blue_bright) # RGB lights still use their own colour
+      state-binary_sensor-active-color: var(--sifi_blue_bright) # Smoke/moisture/etc stay red
+      state-fan-active-color: var(--sifi_blue_bright)
+      state-cover-active-color: var(--sifi_blue_bright)
+      state-media_player-active-color: var(--sifi_blue_bright)
+      state-vacuum-active-color: var(--sifi_blue_bright)
+      state-valve-active-color: var(--sifi_blue_bright)
+      state-person-home-color: var(--sifi_blue_bright)
+      state-person-active-color: var(--sifi_blue_bright)
+      state-device_tracker-home-color: var(--sifi_blue_bright)
+      state-device_tracker-active-color: var(--sifi_blue_bright)
+      state-update-active-color: var(--sifi_ember)
+      # Left at HA defaults on purpose: locks, alarms, plant/siren (red), sun, weather
+
+      ############## Thermostats ##############
+      # HA draws the thermostat range arc at a fixed 50% opacity.
+      state-climate-heat-color: var(--sifi_heat)
+      state-climate-cool-color: var(--sifi_cool)
+
+      ############## Graph Lines (history / statistics graphs) ##############
+      # Sky blue leads, then each neighbour jumps hue so lines stay distinct
+      graph-color-1: var(--sifi_sky)
+      graph-color-2: var(--sifi_ember)
+      graph-color-3: var(--sifi_mint)
+      graph-color-4: var(--sifi_violet)
+      graph-color-5: var(--sifi_amber)
+      graph-color-6: var(--sifi_pink)
+      graph-color-7: var(--sifi_white)
+      graph-color-8: var(--sifi_cyan)
+
+      ############## Tables ##############
+      table-row-background-color: var(--sifi_void)
+      table-row-alternative-background-color: var(--sifi_deep)
+      data-table-background-color: var(--primary-background-color)
+
+      ############## Code Editor (CodeMirror) ##############
+      # Syntax colours are only used here, so they stay inline
+      codemirror-atom: var(--sifi_white)
+      codemirror-string: rgb(255, 214, 140)
+      codemirror-keyword: var(--sifi_blue_bright)
+      codemirror-number: rgb(120, 190, 255)
+      codemirror-property: rgb(140, 240, 200)
+      codemirror-meta: var(--sifi_steel)
