@@ -82,11 +82,6 @@ you can use on any dashboard view:
 - Slider thumbs and tile-card sliders use fixed shadows in Home Assistant, so
   they can't glow from a theme alone (that needs card-mod).
 
-## More from 3ATIVE
-
-Home Assistant, ESPHome and electronics tutorials on
-[YouTube](https://www.youtube.com/3ative/videos).
-
 ---
 
 <div align="center">
@@ -117,6 +112,11 @@ Found this useful? Want to say thanks and fuel future creations?
 </table>
 
 **Every contribution helps bring more awesome projects to life!** 🚀
+
+### More from 3ATIVE
+
+Home Assistant, ESPHome and electronics tutorials on
+[YouTube](https://www.youtube.com/3ative/videos).
 
 </div>
 
