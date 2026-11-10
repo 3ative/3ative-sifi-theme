@@ -113,8 +113,6 @@ Found this useful? Want to say thanks and fuel future creations?
 
 **Every contribution helps bring more awesome projects to life!** 🚀
 
-### More from 3ATIVE
-
 Home Assistant, ESPHome and electronics tutorials on
 [YouTube](https://www.youtube.com/3ative/videos).
 
