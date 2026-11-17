@@ -23,14 +23,12 @@ so this theme has no light mode.
 ### Home Assistant Marketplace
 
 1. Go to **Settings** > **Marketplace** and search for **3ATIVE SiFi 01**.
-   (Not listed yet? Select **Add from link** and enter
-   `https://github.com/3ative/3ative-sifi-theme`.)
 2. Install it.
 3. Restart Home Assistant, or call the `frontend.reload_themes` action.
 4. Go to your profile and pick **3ATIVE SiFi 01** as your theme.
 
-> On Home Assistant older than 2026.11, use HACS instead: HACS > three-dot
-> menu > **Custom repositories**, add the URL above with type **Theme**.
+> On Home Assistant older than 2026.11, install it through HACS instead:
+> search HACS for **3ATIVE SiFi 01**.
 
 ### Manual
 
