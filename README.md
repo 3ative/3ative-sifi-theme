@@ -2,6 +2,10 @@
 
 [![Home Assistant Marketplace](https://img.shields.io/badge/Home%20Assistant-Marketplace-41BDF5.svg?logo=homeassistant&logoColor=white)](https://www.home-assistant.io)
 [![Validate](https://github.com/3ative/3ative-sifi-theme/actions/workflows/validate.yaml/badge.svg)](https://github.com/3ative/3ative-sifi-theme/actions/workflows/validate.yaml)
+[![Release](https://img.shields.io/github/v/release/3ative/3ative-sifi-theme)](https://github.com/3ative/3ative-sifi-theme/releases)
+[![Stars](https://img.shields.io/github/stars/3ative/3ative-sifi-theme?style=flat)](https://github.com/3ative/3ative-sifi-theme/stargazers)
+[![Last commit](https://img.shields.io/github/last-commit/3ative/3ative-sifi-theme)](https://github.com/3ative/3ative-sifi-theme/commits/main)
+[![License](https://img.shields.io/github/license/3ative/3ative-sifi-theme)](https://github.com/3ative/3ative-sifi-theme/blob/main/LICENSE)
 
 A sci-fi control-room theme for Home Assistant: deep navy panels, a signature
 blue accent, glowing cards, switches, buttons and dialogs, and frosted-glass
